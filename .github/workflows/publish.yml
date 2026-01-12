@@ -6,9 +6,11 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+permissions:
+  attestations: write
+  packages: write
+  id-token: write
+  contents: read
 
 jobs:
   publish:
