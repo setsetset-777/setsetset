@@ -12,7 +12,7 @@ env:
 
 jobs:
   publish:
-    uses: setsetset-777/infra/.github/workflows/docker-publish.yml@main
+    uses: setsetset-777/777-infra/.github/workflows/docker-publish.yml@main
     with:
       image_name: ${{ github.repository }}
       registry: ghcr.io
