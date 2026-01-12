@@ -17,5 +17,3 @@ jobs:
     with:
       image_name: ${{ github.repository }}
       registry: ghcr.io
-    secrets:
-      GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
