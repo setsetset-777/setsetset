@@ -1,4 +1,4 @@
-FROM node:20-alpine AS frontend-builder
+FROM node:20-alpine AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
@@ -6,7 +6,7 @@ RUN corepack enable
 FROM base AS build
 COPY . /usr/src/app
 WORKDIR /usr/src/app
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm install
 RUN pnpm run -r build
 RUN pnpm deploy --filter=client --prod /client
 RUN pnpm deploy --filter=server --prod /server
