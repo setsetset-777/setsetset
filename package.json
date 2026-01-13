@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Website for the setsetset studio.",
   "main": "dist/js/index.js",
+  "type": "module",
   "scripts": {
-    "dev": "http-server dist"
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build"
   },
   "repository": {
     "type": "git",
@@ -15,8 +17,5 @@
   "bugs": {
     "url": "https://github.com/loic-h/setsetset/issues"
   },
-  "homepage": "https://github.com/loic-h/setsetset#readme",
-  "devDependencies": {
-    "http-server": "^14.1.1"
-  }
+  "homepage": "https://github.com/loic-h/setsetset#readme"
 }

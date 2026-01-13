@@ -1,0 +1,19 @@
+services:
+  dev:
+    image: node:20-alpine
+    container_name: setsetset-dev
+    working_dir: /workspace
+
+    command: sh -c "
+      corepack enable &&
+      pnpm install &&
+      pnpm dev"
+
+    env_file: ".env"
+
+    volumes:
+      - ./:/workspace
+      - /workspace/node_modules
+
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"

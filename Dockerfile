@@ -1,7 +1,21 @@
-FROM nginx:stable-alpine
+FROM node:20-alpine AS frontend-builder
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
-COPY dist/ /usr/share/nginx/html/
+FROM base AS build
+COPY . /usr/src/app
+WORKDIR /usr/src/app
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm run -r build
+RUN pnpm deploy --filter=client --prod /client
+RUN pnpm deploy --filter=server --prod /server
 
-EXPOSE 80
+FROM base AS client
+COPY --from=build /client /client
 
-CMD ["nginx", "-g", "daemon off;"]
+FROM base AS server
+COPY --from=build /server /server
+WORKDIR /server
+EXPOSE 8001
+CMD [ "pnpm", "start" ]
