@@ -16,6 +16,7 @@ COPY --from=build /client /client
 
 FROM base AS server
 COPY --from=build /server /server
+COPY --from=build /client/dist /server/client/dist
 WORKDIR /server
 EXPOSE 8001
 CMD [ "pnpm", "start" ]
