@@ -1,0 +1,13 @@
+services:
+  setsetset-prod:
+    container_name: prod
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    networks:
+      - setsetset-network
+
+networks:
+  setsetset-network:
+    external: true

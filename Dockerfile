@@ -1,22 +1,23 @@
 FROM node:25-alpine AS base
+WORKDIR /app
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
-FROM base AS build
-COPY . /usr/src/app
-WORKDIR /usr/src/app
 RUN npm install -g pnpm
-RUN pnpm install
-RUN pnpm run -r build
-RUN pnpm deploy --filter=client --prod /client
-RUN pnpm deploy --filter=server --prod /server
 
-FROM base AS client
-COPY --from=build /client /client
+ENV CLIENT_DIST="/app/server/client"
+ENV CONFIG_PATH="/app/server/config"
+
+FROM base AS build
+COPY . .
+
+RUN pnpm install
+RUN pnpm --filter client -r build
+RUN pnpm --filter server -r build
 
 FROM base AS server
-COPY --from=build /server /server
-COPY --from=build /client/dist /server/client/dist
+COPY --from=build /app/apps/server /server
+COPY --from=build /app/apps/client/dist /server/client/dist
 WORKDIR /server
 EXPOSE 8001
 CMD [ "pnpm", "start" ]
