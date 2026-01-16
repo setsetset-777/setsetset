@@ -1,13 +1,15 @@
 import "../styles/index.scss";
 
-import "./components/index.js";
-import initActiveAnchor from "./utils/initActiveAnchor.js";
+import "./components/index.ts";
+import initActiveAnchor from "./utils/initActiveAnchor.ts";
+
+type Theme = "dark" | "light";
 
 /**
  * Automatically set theme on preferred color change
  */
 const detectTheme = () => {
-  let storedTheme = localStorage.getItem("theme");
+  let storedTheme = localStorage.getItem("theme") as Theme;
   if (storedTheme) {
     setTheme(storedTheme);
   } else if (window.matchMedia("(prefers-color-scheme: dark)")) {
@@ -21,7 +23,7 @@ const detectTheme = () => {
       setTheme(theme);
     });
 
-  document.querySelector(".settings-theme").addEventListener("click", () => {
+  document.querySelector(".settings-theme")?.addEventListener("click", () => {
     toggleTheme();
   });
 };
@@ -29,15 +31,21 @@ const detectTheme = () => {
 /**
  * Set color theme
  */
-const setTheme = (theme) => {
-  const dataset = document.querySelector("body").dataset;
+const setTheme = (theme: Theme) => {
+  const dataset = document.querySelector("body")?.dataset;
+  if (!dataset) {
+    return;
+  }
   dataset.theme = theme;
   localStorage.setItem("theme", theme);
 };
 
 const toggleTheme = () => {
-  const dataset = document.querySelector("body").dataset;
-  let theme = dataset.theme;
+  const dataset = document.querySelector("body")?.dataset;
+  if (!dataset) {
+    return;
+  }
+  let theme: Theme = dataset.theme as Theme;
   if (theme === "dark") {
     theme = "light";
   } else {

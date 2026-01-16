@@ -17,7 +17,7 @@ export const getAssetsDetails = (
     fs.readFileSync(path.join(clientDistPath, ".vite/manifest.json"), "utf-8"),
   );
 
-  const main = manifest["src/js/main.js"];
+  const main = manifest["src/js/main.ts"];
   const reset = manifest["src/styles/reset.scss"];
 
   return {

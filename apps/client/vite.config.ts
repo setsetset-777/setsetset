@@ -6,7 +6,7 @@ export default {
     manifest: true,
     rollupOptions: {
       input: {
-        main: path.resolve(__dirname, "src/js/main.js"),
+        main: path.resolve(__dirname, "src/js/main.ts"),
         reset: path.resolve(__dirname, "src/styles/reset.scss"),
       },
     },
