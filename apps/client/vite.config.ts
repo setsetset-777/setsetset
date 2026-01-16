@@ -2,7 +2,7 @@ import type { UserConfig } from "vite";
 import path from "path";
 import fs from "fs";
 
-const configPath = process.env.CONFIG_PATH || "../../config";
+const configPath = "../../config";
 const clientConfig = JSON.parse(
   fs.readFileSync(path.resolve(configPath, "client.json"), "utf8"),
 );

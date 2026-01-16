@@ -2,10 +2,9 @@ import path from "path";
 import fs from "fs";
 
 export * from "./fetchPayload.ts";
+import config from "./config.ts";
 
-const manifestFile = process.env.MANIFEST_FILE as string;
-const mainFile = process.env.MAIN_FILE as string;
-const resetFile = process.env.RESET_FILE as string;
+const { manifestFile, mainFile, resetFile } = config.client;
 
 /**
  * Returns client assets access details
