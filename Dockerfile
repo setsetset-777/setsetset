@@ -5,8 +5,8 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 RUN npm install -g pnpm
 
-ENV CLIENT_DIST="/app/server/client"
-ENV CONFIG_PATH="/app/server/config"
+ENV CLIENT_DIST="/server/client"
+# ENV CONFIG_PATH="/app/server/config"
 
 FROM base AS build
 COPY . .
