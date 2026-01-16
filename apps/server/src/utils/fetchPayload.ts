@@ -1,3 +1,5 @@
+import log from "./log.ts";
+
 export type FetchData = Promise<Record<string, any>>;
 /**
  * Fetches a record from PayloadCMS
@@ -12,9 +14,16 @@ export const fetchPayload = async (
     path += "globals/";
   }
   path += slug;
-  const response = await fetch(`${process.env.PAYLOAD_API_URL}${path}`);
-  const data = await response.json();
-  return data;
+  const url = `${process.env.PAYLOAD_API_URL}${path}`;
+  try {
+    log.info(`Fetching data with ${url}`);
+    const response = await fetch(url);
+    const data = await response.json();
+    log.info(`Data received for ${url}: ${JSON.stringify(data)}`);
+    return data;
+  } catch (e) {
+    throw `Something went wrong while fetching data with ${url}: ${e}`;
+  }
 };
 
 /**
