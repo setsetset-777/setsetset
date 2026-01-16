@@ -33,6 +33,12 @@ services:
 
     env_file: ".env"
 
+    environment:
+      MANIFEST_FILE: ".vite/manifest.json"
+      MAIN_FILE: "src/js/main.ts"
+      RESET_FILE: "src/styles/reset.scss"
+      CLIENT_DIST: "/workspace/client-dist"
+
     volumes:
       - ./:/workspace
       - /workspace/node_modules

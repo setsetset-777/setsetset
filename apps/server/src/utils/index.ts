@@ -3,6 +3,10 @@ import fs from "fs";
 
 export * from "./fetchPayload.ts";
 
+const manifestFile = process.env.MANIFEST_FILE as string;
+const mainFile = process.env.MAIN_FILE as string;
+const resetFile = process.env.RESET_FILE as string;
+
 /**
  * Returns client assets access details
  */
@@ -14,11 +18,11 @@ export const getAssetsDetails = (
   resetCss: string;
 } => {
   const manifest = JSON.parse(
-    fs.readFileSync(path.join(clientDistPath, ".vite/manifest.json"), "utf-8"),
+    fs.readFileSync(path.join(clientDistPath, manifestFile), "utf-8"),
   );
 
-  const main = manifest["src/js/main.ts"];
-  const reset = manifest["src/styles/reset.scss"];
+  const main = manifest[mainFile];
+  const reset = manifest[resetFile];
 
   return {
     mainJs: main.file,

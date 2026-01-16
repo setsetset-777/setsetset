@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 
 const port = parseInt(process.env.SERVER_PORT as string) || 3000;
 
-const clientDistPath = "/workspace/client-dist";
+const clientDistPath = process.env.CLIENT_DIST as string;
 const clientAssetsPath = path.join(clientDistPath, "assets");
 
 app.use(express.static(path.join(__dirname, "../public")));
