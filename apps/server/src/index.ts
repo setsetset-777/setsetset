@@ -3,7 +3,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import { fetchGlobal, getAssetsDetails } from "./utils/index.ts";
-import config from "./utils/config.ts";
 
 const app = express();
 
@@ -12,15 +11,7 @@ const __dirname = path.dirname(__filename);
 
 const port = parseInt(process.env.SERVER_PORT as string) || 3000;
 
-<<<<<<< Updated upstream
-const clientDistPath = process.env.CLIENT_DIST as string;
-=======
-<<<<<<< Updated upstream
-const clientDistPath = "/workspace/client-dist";
-=======
 const clientDistPath = process.env.CLIENT_DIST || "../../client/dist";
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 const clientAssetsPath = path.join(clientDistPath, "assets");
 
 app.use(express.static(path.join(__dirname, "../public")));

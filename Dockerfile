@@ -5,19 +5,29 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 RUN npm install -g pnpm
 
-ENV CLIENT_DIST="/server/client"
-# ENV CONFIG_PATH="/app/server/config"
-
+# -------------------------
+# Build
+# -------------------------
 FROM base AS build
 COPY . .
-
 RUN pnpm install
-RUN pnpm --filter client -r build
-RUN pnpm --filter server -r build
+RUN pnpm --filter client build
+RUN pnpm --filter server build
 
+# -------------------------
+# Runtime
+# -------------------------
 FROM base AS server
-COPY --from=build /app/apps/server /server
-COPY --from=build /app/apps/client/dist /server/client/dist
 WORKDIR /server
+
+# Copy server source
+COPY --from=build /app/apps/server .
+
+# Copy built client assets
+COPY --from=build /app/apps/client/dist ./client/dist
+
+# Install only prod deps for server
+RUN pnpm install --prod
+
 EXPOSE 8001
-CMD [ "pnpm", "start" ]
+CMD ["pnpm", "start"]

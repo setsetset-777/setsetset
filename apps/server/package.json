@@ -2,12 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "type": "module",
   "scripts": {
     "dev": "node --watch src/index.ts",
     "build": "echo \"build client\"",
-    "start": "node index.js"
+    "start": "node src/index.ts"
   },
   "keywords": [],
   "author": "",
