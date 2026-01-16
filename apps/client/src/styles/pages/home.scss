@@ -1,0 +1,16 @@
+.logo-symbol {
+  float: left;
+  margin-left: calc(-1 * var(--anchor-padding));
+}
+
+.logo-mark {
+  float: left;
+  margin-left: 0.5em;
+}
+
+.catch-phrase {
+  font-family: var(--catch-font-family);
+  font-size: var(--catch-font-size);
+  line-height: 1.2;
+  white-space: pre-line;
+}

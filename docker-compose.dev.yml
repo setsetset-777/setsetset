@@ -1,19 +1,51 @@
 services:
-  dev:
-    image: node:20-alpine
-    container_name: setsetset-dev
+  client:
+    image: node:25-alpine
+    container_name: setsetset-client
     working_dir: /workspace
 
     command: sh -c "
-      corepack enable &&
+      npm i -g pnpm &&
       pnpm install &&
-      pnpm dev"
+      pnpm --filter client dev"
 
     env_file: ".env"
 
     volumes:
       - ./:/workspace
       - /workspace/node_modules
+      - client-dist:/workspace/apps/client/dist
+
+    networks:
+      - setsetset-network
+
+  server:
+    image: node:25-alpine
+    container_name: setsetset-server
+    working_dir: /workspace
+    depends_on:
+      - client
+
+    command: sh -c "
+      npm i -g pnpm &&
+      pnpm install &&
+      pnpm --filter server dev"
+
+    env_file: ".env"
+
+    volumes:
+      - ./:/workspace
+      - /workspace/node_modules
+      - client-dist:/workspace/client-dist
 
     ports:
       - "${SERVER_PORT}:${SERVER_PORT}"
+    networks:
+      - setsetset-network
+
+networks:
+  setsetset-network:
+    external: true
+
+volumes:
+  client-dist:

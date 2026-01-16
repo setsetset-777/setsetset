@@ -1,0 +1,36 @@
+{
+    "works": {
+        "label": "Works",
+        "initial": "W",
+        "items": [
+            {
+                "count": "1",
+                "title": "deValence",
+                "tags": ["dev"],
+                "year": "2020",
+                "url": "https://devalence.net"
+            },
+            {
+                "count": "2",
+                "title": "Paul Lepreux",
+                "tags": ["dev"],
+                "year": "2020",
+                "url": "https://paullepreux.com"
+            }
+        ]
+    },
+    "labs": {
+        "label": "Labs",
+        "initial": "L",
+        "items": [
+            {
+                "count": "1",
+                "title": "HMS Music QUiz",
+                "tags": ["dev", "des"],
+                "year": "2020",
+                "code": "https://github.com/loic-h/hms",
+                "url": "https://hms.loiic.com"
+            }
+        ]
+    }
+}
