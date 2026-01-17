@@ -69,7 +69,7 @@ export const fetchPayload = async (
     });
 
     if (!res.ok) {
-      throw `Something went wrong while fetching data with ${url}: ${e}`;
+      throw `Something went wrong while fetching data with ${url}`;
     }
 
     const data = await res.json();
