@@ -10,10 +10,6 @@ importers:
   .: {}
 
   apps/client:
-    dependencies:
-      ejs:
-        specifier: ^4.0.1
-        version: 4.0.1
     devDependencies:
       sass-embedded:
         specifier: ^1.97.2
@@ -43,6 +39,9 @@ importers:
       '@types/express':
         specifier: ^5.0.6
         version: 5.0.6
+      ejs:
+        specifier: ^4.0.1
+        version: 4.0.1
       express:
         specifier: ^5.2.1
         version: 5.2.1
