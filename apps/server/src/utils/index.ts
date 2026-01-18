@@ -1,8 +1,13 @@
 import path from "path";
 import fs from "fs";
 
-export * from "./fetchPayload.ts";
 import config from "./config.ts";
+
+export * from "./fetchPayload.ts";
+
+export const clientDistPath = process.env.CLIENT_DIST || "../../client/dist";
+
+export const clientAssetsPath = path.join(clientDistPath, "assets");
 
 const { manifestFile, mainFile, resetFile } = config.client;
 
