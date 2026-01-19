@@ -1,6 +1,7 @@
 import log from "./log.ts";
 
 export type FetchData = Promise<Record<string, any>>;
+type Locale = string;
 
 let cachedToken: string | null = null;
 let tokenExpiresAt = 0;
@@ -44,17 +45,36 @@ const getPayloadToken = async () => {
  */
 export const fetchPayload = async (
   slug: string,
-  type: "global" | "collection" | "auth" = "collection",
+  type?: "global" | "collection" | "auth" | null,
+  locale?: Locale,
 ): FetchData => {
   const token = await getPayloadToken();
+
+  type Params = {
+    locale?: Locale;
+  };
+
+  let params: Params = {};
+
+  if (["global", "collection"].includes(type as string)) {
+    params.locale = locale;
+  }
 
   let path = "/";
 
   if (type === "global") {
     path += "globals/";
   }
+
   path += slug;
+
+  if (Object.keys(params).length > 0) {
+    path += `?${Object.entries(params).map(([k, v]) => `${k}=${v}`)}`;
+  }
+
   const url = `${process.env.PAYLOAD_API_URL}${path}`;
+
+  console.log("fetchPaylod", slug, type, locale, url);
 
   log.info(`Fetching data with ${url}`);
 
@@ -83,5 +103,14 @@ export const fetchPayload = async (
 /**
  * Fetches a global from PayloadCMS
  */
-export const fetchGlobal = async (path: string): FetchData =>
-  fetchPayload(path, "global");
+export const fetchGlobal = async (path: string, locale?: string): FetchData =>
+  fetchPayload(path, "global", locale);
+
+export const fetchCollection = async (
+  path: string,
+  locale?: string,
+): FetchData => fetchPayload(path, "global", locale);
+
+export const fetchPage = async (path: string, locale?: string) => {
+  return fetchGlobal(path, locale) ?? fetchCollection(path, locale);
+};

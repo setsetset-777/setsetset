@@ -29,8 +29,8 @@ export const getAssetsDetails = (
   const reset = manifest[resetFile];
 
   return {
-    mainJs: main.file,
-    mainCss: main.css[0],
-    resetCss: reset.file,
+    mainJs: `/${main.file}`,
+    mainCss: `/${main.css[0]}`,
+    resetCss: `/${reset.file}`,
   };
 };
