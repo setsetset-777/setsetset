@@ -24,4 +24,8 @@
   <link href="<%= mainCss %>" rel="stylesheet" />
 
   <script type="module" src="<%= mainJs %>"></script>
+
+  <% if (analytics.enable) { %>
+  <script defer src="<%= analytics.domain %>/script.js" data-website-id="<%= analytics.id %>"></script>
+  <% } %>
 </head>

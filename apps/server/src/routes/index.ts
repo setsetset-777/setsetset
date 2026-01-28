@@ -16,6 +16,18 @@ const localization = await fetchPayload("locales");
 
 const { localeCodes: locales, defaultLocale } = localization;
 
+const { mainJs, mainCss, resetCss } = getAssetsDetails(clientDistPath);
+const viewData = {
+  mainJs,
+  mainCss,
+  resetCss,
+  analytics: {
+    enable: process.env.ANALYTICS_ENABLE === "true",
+    domain: process.env.ANALYTICS_DOMAIN,
+    id: process.env.ANALYTICS_ID,
+  },
+};
+
 router.get("{/*paths}", async (req, res, next) => {
   const paths = req.params.paths || [];
   let locale = defaultLocale;
@@ -40,7 +52,6 @@ router.get("{/*paths}", async (req, res, next) => {
     throw err;
   }
 
-  const { mainJs, mainCss, resetCss } = getAssetsDetails(clientDistPath);
   try {
     const home = await fetchGlobal("home", locale);
 
@@ -48,9 +59,7 @@ router.get("{/*paths}", async (req, res, next) => {
       home: {
         catch: home.catch,
       },
-      mainJs,
-      mainCss,
-      resetCss,
+      ...viewData,
     });
   } catch (e) {
     next(e);
@@ -62,8 +71,6 @@ router.get("{/*paths}", async (req, res, next) => {
  */
 router.use(
   (err: HttpError, req: Request, res: Response, next: NextFunction) => {
-    const { mainJs, mainCss, resetCss } = getAssetsDetails(clientDistPath);
-
     res.status(err.status || 500);
 
     res.render("error", {
@@ -71,9 +78,7 @@ router.use(
         process.env.NODE_ENV === "production"
           ? "Something went wrong. Please try agaon later."
           : err.message,
-      mainJs,
-      mainCss,
-      resetCss,
+      ...viewData,
     });
   },
 );
