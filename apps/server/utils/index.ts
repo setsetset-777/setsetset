@@ -3,8 +3,6 @@ import fs from "fs";
 
 import config from "./config.ts";
 
-export * from "./fetchPayload.ts";
-
 export const clientDistPath = process.env.CLIENT_DIST || "../../client/dist";
 
 export const clientAssetsPath = path.join(clientDistPath, "assets");

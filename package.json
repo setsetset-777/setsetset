@@ -2,10 +2,10 @@
   "name": "setsetset",
   "version": "1.0.0",
   "description": "Website for the setsetset studio.",
-  "main": "dist/js/index.js",
   "type": "module",
   "scripts": {
-    "dev": "pnpm -r --parallel dev",
+    "compose:up": "docker compose -f docker-compose.dev.yml up --build",
+    "compose:down": "docker compose -f docker-compose.dev.yml down",
     "build": "pnpm -r build"
   },
   "repository": {

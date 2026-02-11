@@ -3,7 +3,7 @@
 Website for the setsetset studio.
 
 ## Development
-
-```
-npm run dev
+Run:
+```sh
+pnpm compose:up
 ```
