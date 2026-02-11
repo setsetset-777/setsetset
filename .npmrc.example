@@ -1,5 +1,0 @@
-# 1. Copy and rename this file `.npmrc`
-# 2. Replace ${NPM_PAT} with your PAT value
-# ⚠️ Be sure the file is in your `.gitignore`. Secrets must not be committed.
-@setsetset-777:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${NPM_PAT}

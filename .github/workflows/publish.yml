@@ -20,5 +20,3 @@ jobs:
     with:
       image_name: ${{ github.repository }}
       registry: ghcr.io
-    secrets:
-      NPM_PAT: ${{ secrets.NPM_PAT }}
