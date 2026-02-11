@@ -12,6 +12,7 @@ RUN npm install -g pnpm
 # Build
 # -------------------------
 FROM base AS build
+COPY .npmrc.example .npmrc
 COPY . .
 RUN pnpm install
 RUN pnpm --filter client build
