@@ -1,6 +1,5 @@
 packages:
   - "apps/*"
-  - "packages/*"
   # Add for local toolbox debugging
   # - toolbox/packages/*
 injectWorkspacePackages: true
