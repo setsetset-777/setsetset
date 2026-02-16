@@ -1,6 +1,6 @@
 services:
   client:
-    image: node:25-alpine
+    image: node:20-alpine
     container_name: setsetset-client
     working_dir: /workspace
     environment:
@@ -9,6 +9,7 @@ services:
     command: sh -c "
       npm i -g pnpm &&
       pnpm install &&
+      pnpm --filter client build &&
       pnpm --filter client dev"
 
     env_file: ".env"
@@ -23,7 +24,7 @@ services:
       - setsetset-network
 
   server:
-    image: node:25-alpine
+    image: node:20-alpine
     container_name: setsetset-server
     working_dir: /workspace
     depends_on:
