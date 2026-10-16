@@ -8,6 +8,7 @@ services:
 
     command: sh -c "
       npm i -g pnpm &&
+      pnpm config set //npm.pkg.github.com/:_authToken "$GITHUB_TOKEN" &&
       pnpm install &&
       pnpm --filter client build &&
       pnpm --filter client dev"
@@ -32,6 +33,7 @@ services:
 
     command: sh -c "
       npm i -g pnpm &&
+      pnpm config set //npm.pkg.github.com/:_authToken "$GITHUB_TOKEN" &&
       pnpm install &&
       pnpm --filter server dev"
 

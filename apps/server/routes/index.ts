@@ -2,7 +2,7 @@ import { Router } from "express";
 import type { Router as RouterType } from "express";
 import type { Request, Response, NextFunction } from "express";
 
-import payloader from "@setsetset-777/payloader";
+// import payloader from "@setsetset-777/payloader";
 import type { LocalesData } from "@setsetset-777/payloader";
 import logger from "@setsetset-777/logger";
 
@@ -14,11 +14,11 @@ export const initRouter = async (): Promise<RouterType> => {
 
   let localization = { localeCodes: ["en"], defaultLocale: "en" };
 
-  try {
-    localization = (await payloader.fetch("locales")) as LocalesData;
-  } catch (e) {
-    logger.warn("No locales retrieved:", e);
-  }
+  // try {
+  //   localization = (await payloader.fetch("locales")) as LocalesData;
+  // } catch (e) {
+  //   logger.warn("No locales retrieved:", e);
+  // }
 
   const { localeCodes: locales, defaultLocale } = localization;
 
@@ -52,10 +52,10 @@ export const initRouter = async (): Promise<RouterType> => {
     }
 
     try {
-      const home = await payloader.global("home", locale);
+      // const home = await payloader.global("home", locale);
       res.render("home", {
         ...viewData,
-        home,
+        // home,
       });
     } catch (e) {
       next(e);

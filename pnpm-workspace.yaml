@@ -2,4 +2,7 @@ packages:
   - "apps/*"
   # Add for local toolbox debugging
   # - toolbox/packages/*
+allowBuilds:
+  esbuild: true
+  "@parcel/watcher": true
 injectWorkspacePackages: true

@@ -2,20 +2,20 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import payloader from "@setsetset-777/payloader";
+// import payloader from "@setsetset-777/payloader";
 import logger from "@setsetset-777/logger";
 
 import { initRouter } from "./routes/index.ts";
 import { clientAssetsPath } from "./utils/index.ts";
 
-payloader.init({
-  enable: process.env.PAYLOAD_ENABLE === "true",
-  apiUrl: `${process.env.PAYLOAD_API_URL}`,
-  serviceUser: `${process.env.PAYLOAD_SERVICE_USER}`,
-  servicePassord: `${process.env.PAYLOAD_SERVICE_PASSWORD}`,
-  env:
-    `${process.env.NODE_ENV}` === "development" ? "development" : "production",
-});
+// payloader.init({
+//   enable: process.env.PAYLOAD_ENABLE === "true",
+//   apiUrl: `${process.env.PAYLOAD_API_URL}`,
+//   serviceUser: `${process.env.PAYLOAD_SERVICE_USER}`,
+//   servicePassord: `${process.env.PAYLOAD_SERVICE_PASSWORD}`,
+//   env:
+//     `${process.env.NODE_ENV}` === "development" ? "development" : "production",
+// });
 
 const app = express();
 const router = await initRouter();

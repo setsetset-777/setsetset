@@ -5,13 +5,27 @@
     "items": [
       {
         "count": "1",
+        "title": "Sukha",
+        "tags": ["dev", "des"],
+        "year": "2026",
+        "url": "https://sukha-archi.com"
+      },
+      {
+        "count": "2",
+        "title": "Monolithe",
+        "tags": ["dev", "des"],
+        "year": "2026",
+        "url": "https://monolithe-gravure.fr"
+      },
+      {
+        "count": "3",
         "title": "deValence",
         "tags": ["dev"],
         "year": "2020",
         "url": "https://devalence.net"
       },
       {
-        "count": "2",
+        "count": "4",
         "title": "Paul Lepreux",
         "tags": ["dev"],
         "year": "2020",
