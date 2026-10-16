@@ -1,0 +1,22 @@
+<svg
+    width="39"
+    height="14"
+    viewBox="0 0 39 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden
+  >
+  <path
+    d="M28.0764 14L33.5364 1.44H25.8564V0H35.2564V1.26L29.8564 14H28.0764Z"
+    fill="currentColor"
+  />
+  <path
+    d="M17.3928 14L22.8528 1.44H15.1728V0H24.5728V1.26L19.1728 14H17.3928Z"
+    fill="currentColor"
+  />
+  <path
+    d="M6.70922 14L12.1692 1.44H4.48922V0H13.8892V1.26L8.48922 14H6.70922Z"
+    fill="currentColor"
+  />
+  <path d="M0 6H39.0039V9H0V6Z" fill="currentColor" />
+</svg>

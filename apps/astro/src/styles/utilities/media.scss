@@ -1,0 +1,41 @@
+@use "sass:map";
+
+$breakpoints: (
+  width: (
+    small-mobile: 480px,
+    mobile: 768px,
+    big-mobile: 900px,
+    desktop: 1024px,
+    big-desktop: 1440px,
+  ),
+  height: (
+    xs: 400px,
+    s: 800px,
+    m: 1200px,
+  ),
+);
+
+$ranges: (
+  from: ">=",
+  until: "<",
+);
+
+@function breakpoint($break, $type) {
+  @return map.get(map.get($breakpoints, $type), $break);
+}
+
+@function media($break, $type, $direction: from) {
+  @return "#{$type} #{map.get($ranges, $direction)} #{breakpoint($break, $type)}";
+}
+
+@mixin from($break, $type: width) {
+  @media (#{media($break, $type, from)}) {
+    @content;
+  }
+}
+
+@mixin until($break, $type: width) {
+  @media (#{media($break, $type, until)}) {
+    @content;
+  }
+}

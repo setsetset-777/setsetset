@@ -1,0 +1,111 @@
+---
+interface Props {
+  label: string;
+  href: string;
+  index: string;
+}
+
+const { label, href, index } = Astro.props;
+---
+
+<div class="anchor" data-anchor={index}>
+  <div>
+    <a href={href}>{label}</a>
+  </div>
+</div>
+
+<script>
+  import initActiveAnchor from "../utils/initActiveAnchor";
+
+  /**
+   * Run main code
+   */
+  const init = () => {
+    initActiveAnchor();
+  };
+
+  /**
+   * Execute script on DOM ready
+   */
+  document.addEventListener("DOMContentLoaded", init);
+</script>
+
+<style lang="scss">
+  .anchor {
+    font-family: var(--font-family-serif);
+    font-size: var(--anchor-font-size);
+    line-height: var(--anchor-line-height);
+    position: relative;
+
+    & > div {
+      position: relative;
+      padding: 0 var(--anchor-padding);
+      display: inline-block;
+      margin-left: calc(-1 * var(--anchor-padding));
+    }
+
+    & > div:after {
+      content: "";
+      display: block;
+      height: var(--strike-width);
+      position: absolute;
+      top: calc(var(--anchor-line-height) * 0.55em);
+      left: 0;
+      right: 0;
+      background: var(--logo-color);
+      animation: 3s linear slide-in;
+      transition: right var(--transition-timing) var(--transition-function);
+    }
+
+    &:not([data-active]):hover > div:after,
+    &[data-active] > div:after {
+      right: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  [data-anchor] {
+    display: inline-flex;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+
+    &[data-anchor="1"] {
+      top: 1em;
+      bottom: calc(
+        0.5em + 1em * var(--anchor-line-height) * (var(--anchor-total) - 1)
+      );
+    }
+
+    &[data-anchor="2"] {
+      top: 2em;
+      bottom: calc(
+        0.5em + 1em * var(--anchor-line-height) * (var(--anchor-total) - 2)
+      );
+    }
+
+    &[data-anchor="3"] {
+      top: calc(2em + var(--anchor-line-height) * 1em);
+      bottom: calc(
+        0.5em + 1em * var(--anchor-line-height) * (var(--anchor-total) - 3)
+      );
+    }
+
+    &[data-anchor="4"] {
+      top: calc(2em + var(--anchor-line-height) * 1em * 2);
+      bottom: calc(
+        0.5em + 1em * var(--anchor-line-height) * (var(--anchor-total) - 4)
+      );
+    }
+
+    &[data-anchor="5"] {
+      top: calc(2em + var(--anchor-line-height) * 1em * 3);
+      bottom: calc(
+        0.5em + 1em * var(--anchor-line-height) * (var(--anchor-total) - 5)
+      );
+    }
+  }
+</style>

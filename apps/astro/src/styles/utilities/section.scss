@@ -1,0 +1,13 @@
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--section-spacing-top);
+  min-height: calc(55vh - 6em);
+
+  & > h2 {
+    position: sticky;
+    top: 0;
+    bottom: 0;
+  }
+}

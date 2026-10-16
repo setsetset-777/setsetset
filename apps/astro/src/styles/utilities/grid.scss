@@ -1,0 +1,16 @@
+@use "./media" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: var(--grid-template-mobile);
+  grid-template-rows: min-content 1fr;
+  column-gap: var(--grid-gap);
+
+  @include from(mobile) {
+    grid-template-columns: var(--grid-template-tablet);
+  }
+
+  @include from(desktop) {
+    grid-template-columns: var(--grid-template-desktop);
+  }
+}

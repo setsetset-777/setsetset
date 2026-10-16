@@ -1,0 +1,76 @@
+---
+import Anchor from "../Anchor.astro";
+import Service from "../Service.astro";
+import Action from "../Action.astro";
+import SectionSpacingTop from "../SectionSpacingTop.astro";
+---
+
+<SectionSpacingTop id="services" />
+
+<Anchor href="#services" label="Services" index="2" />
+
+<section class="section services grid">
+  <p class="intro">
+    Whether you're launching a new project or refining an existing one, we help
+    you bring your solutions online.
+  </p>
+  <div class="services-list">
+    <Service
+      serial="1"
+      title="Web development"
+      items={[
+        "Accessibility",
+        "API and CMS solutions for easy content integration",
+        "Responsiveness",
+        "Performance",
+        "E-commerce",
+      ]}
+    />
+    <Service
+      serial="2"
+      title="Product design"
+      items={[
+        "User Research",
+        "UX design",
+        "UI Design",
+        "Design Systems",
+        "Prototyping",
+      ]}
+    />
+  </div>
+  <div class="services-action">
+    <Action label="Get in touch" />
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../styles/utilities" as *;
+
+  .intro {
+    grid-column: auto / span 1;
+    padding-bottom: var(--intro-padding-bottom);
+  }
+
+  .services-list {
+    padding-bottom: 1.5em;
+    grid-row: auto / span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+  }
+
+  .services-action {
+    padding-bottom: 1.5em;
+  }
+
+  @include from(mobile) {
+    .services .intro,
+    .services-action {
+      grid-column: 1 / span 1;
+    }
+
+    .services-list {
+      grid-column: 2 / span 1;
+    }
+  }
+</style>

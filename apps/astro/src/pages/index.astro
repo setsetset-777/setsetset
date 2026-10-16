@@ -1,16 +1,81 @@
 ---
+import "../styles/index.scss";
+
+import Head from "../components/Head.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/sections/Hero.astro";
+import Services from "../components/sections/Services.astro";
+import Works from "../components/sections/Works.astro";
+import Contact from "../components/sections/Contact.astro";
+
+const analytics = {
+  enable: false,
+  domain: null,
+  id: null,
+};
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <Head analytics={analytics} />
+
+  <body data-theme="light">
+    <Header />
+
+    <Hero />
+
+    <Services />
+
+    <Works
+      id="works"
+      index="3"
+      intro="A selection of productions for out clients."
+      label="Works"
+    />
+
+    <Works
+      id="labs"
+      index="4"
+      intro="Some side projects. Just for the fun of it."
+      label="Labs"
+    />
+
+    <Contact />
+  </body>
 </html>
+
+<script>
+  setTimeout(() => {
+    document.querySelector("body")?.classList.add("animate-background");
+  }, 200);
+</script>
+
+<style lang="scss">
+  @use "../styles/utilities" as *;
+
+  html {
+    font-family: var(--font-family-sans);
+
+    display: flex;
+    justify-content: center;
+    scroll-behavior: smooth;
+    transition-duration: 500ms;
+  }
+
+  body {
+    background-color: var(--body-color-background);
+    color: var(--color-main);
+    overflow: auto;
+    margin: 0 24px;
+    max-width: 1024px;
+    font-size: var(--font-size-base);
+    position: relative;
+
+    &.animate-background {
+      transition: background-color 0.5s var(--transition-function);
+    }
+
+    @include from(mobile) {
+      margin: 0 32px;
+    }
+  }
+</style>

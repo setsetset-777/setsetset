@@ -1,0 +1,32 @@
+---
+import Anchor from "../Anchor.astro";
+import WorkList from "../WorkList.astro";
+import SectionSpacingTop from "../SectionSpacingTop.astro";
+import type { WorkSrc } from "../../types";
+
+interface Props {
+  id: WorkSrc;
+  label: string;
+  index: string;
+  intro: string;
+}
+
+const { id, label, index, intro } = Astro.props;
+---
+
+<SectionSpacingTop id={id} />
+
+<Anchor href={`#${id}`} label={label} index={index} />
+
+<section class="section works">
+  <p class="intro">{intro}</p>
+  <WorkList src={id} />
+</section>
+
+<style lang="scss">
+  @use "../../styles/utilities" as *;
+
+  .intro {
+    padding-bottom: var(--intro-padding-bottom);
+  }
+</style>

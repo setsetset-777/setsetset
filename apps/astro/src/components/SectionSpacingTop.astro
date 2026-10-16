@@ -1,0 +1,15 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div class="section-spacing-top" id={id}></div>
+
+<style lang="scss">
+  .section-spacing-top {
+    height: calc(45vh - 5em);
+  }
+</style>

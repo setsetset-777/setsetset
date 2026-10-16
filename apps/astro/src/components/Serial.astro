@@ -1,0 +1,21 @@
+---
+interface Props {
+  initial: string;
+  number: string;
+}
+
+const { initial, number } = Astro.props;
+---
+
+<span>
+  {initial}
+  {number}
+</span>
+
+<style>
+  span {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-small);
+    text-transform: uppercase;
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+import Logo from "../../assets/svgs/logo.svg";
+import LogoMark from "../../assets/svgs/logo-mark.svg";
+import SectionSpacingTop from "../SectionSpacingTop.astro";
+---
+
+<SectionSpacingTop />
+
+<a href="#" data-anchor="1" class="logo-symbol" aria-label="Home">
+  <Logo />
+</a>
+
+<div class="logo-mark">
+  <LogoMark />
+</div>
+
+<section class="section hero">
+  <h1 class="catch-phrase">
+    We build creative
+    <br />
+    digital experiences
+  </h1>
+</section>
+
+<style lang="scss">
+  .logo-symbol {
+    display: inline-flex;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+  }
+
+  [data-anchor="1"] {
+    top: 1em;
+    bottom: calc(
+      0.5em + 1em * var(--anchor-line-height) * (var(--anchor-total) - 1)
+    );
+  }
+</style>
+
+<style lang="scss">
+  @use "../../styles/utilities" as *;
+
+  .logo-symbol {
+    float: left;
+    margin-left: calc(-1 * var(--anchor-padding));
+  }
+
+  .logo-mark {
+    float: left;
+    margin-left: 0.5em;
+  }
+
+  .catch-phrase {
+    font-family: var(--catch-font-family);
+    font-size: var(--catch-font-size);
+    line-height: 1.2;
+    white-space: pre-line;
+  }
+</style>

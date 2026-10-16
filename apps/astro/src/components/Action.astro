@@ -1,0 +1,50 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<button>
+  <span>{label}</span>
+</button>
+
+<style>
+  button {
+    position: relative;
+    font-family: var(--font-family-mono);
+    text-transform: uppercase;
+    font-size: var(--action-font-size);
+    border-radius: var(--action-border-radius);
+    border: var(--color-main) solid 1px;
+    border-bottom-width: var(--strike-width);
+    padding: 0.5em 1.5em 0.625em;
+    cursor: pointer;
+    transition: color var(--transition-timing) var(--transition-function);
+  }
+
+  button span {
+    position: relative;
+  }
+
+  button:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 100%;
+    background-color: var(--color-main);
+    transition: top var(--transition-timing) var(--transition-function);
+  }
+
+  button:hover {
+    color: var(--color-background);
+  }
+
+  button:hover:before {
+    top: 0;
+  }
+</style>

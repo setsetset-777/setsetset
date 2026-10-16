@@ -1,0 +1,26 @@
+---
+import Action from "../Action.astro";
+import Anchor from "../Anchor.astro";
+import SectionSpacingTop from "../SectionSpacingTop.astro";
+---
+
+<SectionSpacingTop id="contact" />
+
+<Anchor href="#contact" label="Contact" index="5" />
+
+<section class="section contact">
+  <p class="intro">You have a project or a question?</p>
+  <Action label="Get in touch" />
+</section>
+
+<style lang="scss">
+  @use "../../styles/utilities" as *;
+
+  .contact {
+    align-items: start;
+  }
+
+  .intro {
+    padding-bottom: var(--intro-padding-bottom);
+  }
+</style>

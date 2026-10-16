@@ -1,0 +1,147 @@
+<div class="settings">
+  <button class="settings-theme">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="settings-theme__dark"
+    >
+      <path
+        d="M9.14756 1.84082C9.41735 1.84082 9.683 1.85865 9.94339 1.89319C10.6872 2.07031 10.4333 2.59766 10.0787 2.88848C8.91514 3.80427 8.16807 5.22584 8.16807 6.82129C8.16831 9.31024 9.98715 11.3747 12.3682 11.7576C12.8786 11.8398 13.1599 12.2891 12.5575 12.7761C11.5894 13.4472 10.4148 13.8408 9.14756 13.8408C5.83394 13.8407 3.14756 11.1545 3.14756 7.84082C3.14769 4.52729 5.83402 1.84092 9.14756 1.84082Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="settings-theme__light"
+    >
+      <path
+        d="M7.99951 13.9795C8.5518 13.9795 8.99951 14.4272 8.99951 14.9795C8.99925 15.5316 8.55163 15.9795 7.99951 15.9795C7.44761 15.9792 6.99978 15.5314 6.99951 14.9795C6.99951 14.4274 7.44744 13.9797 7.99951 13.9795Z"
+        fill="currentColor"
+      />
+      <path
+        d="M2.35791 12.2275C2.74837 11.8371 3.38145 11.8372 3.77197 12.2275C4.16248 12.618 4.16244 13.2511 3.77197 13.6416C3.38145 14.0321 2.74843 14.0321 2.35791 13.6416C1.9676 13.2511 1.96746 12.618 2.35791 12.2275Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12.228 12.2275C12.6185 11.8373 13.2516 11.8372 13.6421 12.2275C14.0325 12.618 14.0323 13.2511 13.6421 13.6416C13.2516 14.0321 12.6186 14.0321 12.228 13.6416C11.8376 13.2511 11.8375 12.618 12.228 12.2275Z"
+        fill="currentColor"
+      />
+      <path
+        d="M7.99951 3.02148C10.7609 3.02148 12.9995 5.26006 12.9995 8.02148C12.9992 10.7827 10.7608 13.0215 7.99951 13.0215C5.23847 13.0212 2.99978 10.7825 2.99951 8.02148C2.99951 5.26022 5.23831 3.02174 7.99951 3.02148Z"
+        fill="currentColor"
+      />
+      <path
+        d="M1.021 7C1.57328 7 2.021 7.44772 2.021 8C2.021 8.55228 1.57328 9 1.021 9C0.468711 9 0.0209961 8.55228 0.0209961 8C0.0209961 7.44772 0.468711 7 1.021 7Z"
+        fill="currentColor"
+      />
+      <path
+        d="M14.979 7C15.5313 7.00002 15.979 7.44773 15.979 8C15.979 8.55227 15.5313 8.99998 14.979 9C14.4267 9 13.979 8.55228 13.979 8C13.979 7.44772 14.4267 7 14.979 7Z"
+        fill="currentColor"
+      />
+      <path
+        d="M2.35791 2.3584C2.74843 1.96787 3.38145 1.96787 3.77197 2.3584C4.16239 2.74893 4.16246 3.38197 3.77197 3.77246C3.38146 4.16269 2.74836 4.16279 2.35791 3.77246C1.96747 3.38202 1.96765 2.74894 2.35791 2.3584Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12.228 2.3584C12.6186 1.96787 13.2516 1.96787 13.6421 2.3584C14.0324 2.74894 14.0325 3.38202 13.6421 3.77246C13.2516 4.16282 12.6185 4.1627 12.228 3.77246C11.8375 3.38196 11.8376 2.74893 12.228 2.3584Z"
+        fill="currentColor"
+      />
+      <path
+        d="M7.99951 0.0205078C8.5518 0.0205078 8.99951 0.4692 8.99951 1.02148C8.99925 1.57354 8.55163 2.02148 7.99951 2.02148C7.44761 2.02123 6.99978 1.57339 6.99951 1.02148C6.99951 0.469357 7.44744 0.0207632 7.99951 0.0205078Z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+</div>
+
+<script>
+  type Theme = "dark" | "light";
+
+  /**
+   * Automatically set theme on preferred color change
+   */
+  const detectTheme = () => {
+    let storedTheme = localStorage.getItem("theme") as Theme;
+    if (storedTheme) {
+      setTheme(storedTheme);
+    } else if (window.matchMedia("(prefers-color-scheme: dark)")) {
+      setTheme("dark");
+    }
+
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
+        const theme = event.matches ? "dark" : "light";
+        setTheme(theme);
+      });
+
+    document.querySelector(".settings-theme")?.addEventListener("click", () => {
+      toggleTheme();
+    });
+  };
+
+  /**
+   * Set color theme
+   */
+  const setTheme = (theme: Theme) => {
+    const dataset = document.querySelector("body")?.dataset;
+    if (!dataset) {
+      return;
+    }
+    dataset.theme = theme;
+    localStorage.setItem("theme", theme);
+  };
+
+  const toggleTheme = () => {
+    const dataset = document.querySelector("body")?.dataset;
+    if (!dataset) {
+      return;
+    }
+    let theme: Theme = dataset.theme as Theme;
+    if (theme === "dark") {
+      theme = "light";
+    } else {
+      theme = "dark";
+    }
+    setTheme(theme);
+  };
+
+  /**
+   * Run main code
+   */
+  const init = () => {
+    detectTheme();
+  };
+
+  /**
+   * Execute script on DOM ready
+   */
+  document.addEventListener("DOMContentLoaded", init);
+</script>
+
+<style lang="scss">
+  .settings {
+    position: absolute;
+    right: 0;
+    top: 1em;
+  }
+
+  .settings-theme {
+    cursor: pointer;
+
+    :global([data-theme="dark"]) &__light {
+      display: none;
+    }
+
+    :global([data-theme="light"]) &__dark {
+      display: none;
+    }
+  }
+</style>
