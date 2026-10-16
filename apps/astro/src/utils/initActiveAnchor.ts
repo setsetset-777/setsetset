@@ -27,6 +27,7 @@ function handleScroll(
   items.forEach(({ anchor, section }) => {
     const anchorRect = anchor.getBoundingClientRect();
     const sectionRect = section.getBoundingClientRect();
+
     if (anchorRect.bottom === sectionRect.top) {
       anchor.setAttribute("data-active", "");
       document

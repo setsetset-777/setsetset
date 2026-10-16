@@ -36,6 +36,7 @@ const { label, href, index } = Astro.props;
     font-size: var(--anchor-font-size);
     line-height: var(--anchor-line-height);
     position: relative;
+    width: fit-content;
 
     & > div {
       position: relative;
@@ -46,7 +47,6 @@ const { label, href, index } = Astro.props;
 
     & > div:after {
       content: "";
-      display: block;
       height: var(--strike-width);
       position: absolute;
       top: calc(var(--anchor-line-height) * 0.55em);
@@ -68,7 +68,7 @@ const { label, href, index } = Astro.props;
   }
 
   [data-anchor] {
-    display: inline-flex;
+    display: flex;
     position: sticky;
     top: 0;
     bottom: 0;
