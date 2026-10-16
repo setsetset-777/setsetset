@@ -4,13 +4,27 @@ interface Props {
 }
 
 const { label } = Astro.props;
+
+const email = "loic@setsetset.net";
+const hash = btoa(email);
 ---
 
-<button>
+<button class="action">
   <span>{label}</span>
 </button>
 
-<style>
+<script define:vars={{ hash }}>
+  const actions = document.querySelectorAll(".action");
+
+  actions.forEach((action) =>
+    action.addEventListener("click", (e) => {
+      const email = atob(hash);
+      window.location = `mailto:${email}`;
+    }),
+  );
+</script>
+
+<style lang="scss">
   button {
     position: relative;
     font-family: var(--font-family-mono);
