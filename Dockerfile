@@ -16,7 +16,6 @@ COPY . .
 RUN --mount=type=secret,id=GITHUB_TOKEN \
   pnpm config set //npm.pkg.github.com/:_authToken $(cat /run/secrets/GITHUB_TOKEN) && \
   pnpm install
-RUN pnpm --filter client build
 
 RUN pnpm --filter server build
 
@@ -34,6 +33,8 @@ COPY --from=build /out/server .
 # Copy built client assets
 COPY --from=build /app/apps/client/dist ./client/dist
 COPY --from=build /app/config ./config
+
+ARG CI=true
 
 # Install only prod deps for server
 RUN pnpm install --prod
