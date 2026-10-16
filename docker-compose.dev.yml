@@ -1,67 +1,31 @@
 services:
-  client:
-    image: node:20-alpine
-    container_name: setsetset-client
+  astro:
+    image: node:24-alpine
+    container_name: setsetset-astro
     working_dir: /workspace
-    environment:
-      NODE_ENV: development
-
-    command: sh -c "
-      npm i -g pnpm &&
-      pnpm config set //npm.pkg.github.com/:_authToken "$GITHUB_TOKEN" &&
-      pnpm install &&
-      pnpm --filter client build &&
-      pnpm --filter client dev"
-
-    env_file: ".env"
-
-    volumes:
-      - ./:/workspace
-      - /workspace/node_modules
-      - client-dist:/workspace/apps/client/dist
-      - config:/wokrspace/config
-
-    networks:
-      - setsetset-network
-
-  server:
-    image: node:20-alpine
-    container_name: setsetset-server
-    working_dir: /workspace
-    depends_on:
-      - client
-
-    command: sh -c "
-      npm i -g pnpm &&
-      pnpm config set //npm.pkg.github.com/:_authToken "$GITHUB_TOKEN" &&
-      pnpm install &&
-      pnpm --filter server dev"
-
-    env_file: ".env"
-
-    environment:
-      NODE_ENV: development
-      MANIFEST_FILE: ".vite/manifest.json"
-      MAIN_FILE: "src/js/main.ts"
-      RESET_FILE: "src/styles/reset.scss"
-      CLIENT_DIST: "/workspace/client-dist"
-      CONFIG_DIST: "/workspace/config"
-
-    volumes:
-      - ./:/workspace
-      - /workspace/node_modules
-      - client-dist:/workspace/client-dist
-      - config:/wokrspace/config
-
+    command: >
+      sh -c "npm -g install pnpm && pnpm install && pnpm --filter @app/astro dev --port ${SERVER_PORT} --host"
     ports:
-      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${SERVER_PORT:-3000}:${SERVER_PORT:-3000}"
+    volumes:
+      - ./:/workspace
+      - pnpm_store:/pnpm/store
+      - node_modules:/workspace/node_modules
+      # - /workspace/apps/astro/.astro
+    tmpfs:
+      - /workspace/apps/astro/.astro
+    env_file:
+      - .env
+    stop_grace_period: 1s
     networks:
-      - setsetset-network
+      - setsetset
 
 networks:
-  setsetset-network:
-    external: true
+  setsetset:
+    name: setsetset
 
 volumes:
-  client-dist:
-  config:
+  data:
+  pnpm_store:
+  node_modules:
+  media:
